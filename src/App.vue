@@ -1,11 +1,17 @@
 <template>
-  <div class=""></div>
+  <Header />
+  <transition name="fade" mode="in-out">
+    <router-view />
+  </transition>
+  <Footer />
 </template>
 
 <script>
+import Header from "@/components/ui/Header.vue";
+import Footer from "@/components/ui/Footer.vue";
 export default {
   name: "App",
-  components: {},
+  components: { Header, Footer },
 };
 </script>
 
