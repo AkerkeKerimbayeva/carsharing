@@ -15,7 +15,7 @@ div {
     color: #898989 !important;
     font-size: 16px;
     line-height: 18px;
-    background-color: #141414;
+    background-color: #fff;
 }
 textarea {
     resize: none;
@@ -40,7 +40,7 @@ ul {
     transition: 0.4s;
     &:hover {
         transition: 0.4s;
-        color: #DB3138;
+        color: #DB3138 !important;
         background-color: #fff;
     }
 }
@@ -80,4 +80,29 @@ ul {
 }
 a {
     text-decoration: none;
+}
+@media (max-width: 940px) {
+    .m-none {
+        display: none !important;
+    }
+    .px14 {
+        font-size: 12px;
+    }
+    .px18 {
+        font-size: 14px;
+    }
+    .px24 {
+        font-size: 18px;
+    }
+    .px32 {
+        font-size: 24px;
+    }
+    .px64 {
+        font-size: 48px;
+    }
+}
+@media (min-width: 940px) {
+    .d-none {
+        display: none !important;
+    }
 }

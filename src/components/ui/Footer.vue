@@ -12,15 +12,15 @@
                 to="/tariffs"
                 class="fw500 px18 white"
                 style="cursor: pointer"
-                >Тарифтер</router-link
+                >{{ $t("tariffs") }}</router-link
               >
             </li>
             <li>
               <router-link
-                to="path"
+                to="/condition"
                 class="fw500 px18 white"
                 style="cursor: pointer"
-                >Талаптар</router-link
+                >{{ $t("cond") }}</router-link
               >
             </li>
             <li>
@@ -28,23 +28,23 @@
                 to="/about"
                 class="fw500 px18 white"
                 style="cursor: pointer"
-                >Компания туралы</router-link
+                >{{ $t("about") }}</router-link
               >
             </li>
-            <li>
+            <!-- <li>
               <router-link
-                to="path"
+                to="/"
                 class="fw500 px18 white"
                 style="cursor: pointer"
                 >FAQ</router-link
               >
-            </li>
+            </li> -->
             <li>
               <router-link
                 to="/contacts"
                 class="fw500 px18 white"
                 style="cursor: pointer"
-                >Байланыстар</router-link
+                >{{ $t("contacts") }}</router-link
               >
             </li>
           </ul>
@@ -65,13 +65,23 @@ export default {};
   border-top: 1px solid #fff;
   padding: 30px 0;
   &-wrap {
-    background-color: #141414;
+    background-color: #373737;
   }
   &-right {
     ul {
       display: flex;
       li {
         margin-left: 15px;
+      }
+    }
+  }
+}
+@media (max-width: 940px) {
+  .foot {
+    &-right {
+      ul {
+        flex-direction: column;
+        align-items: end;
       }
     }
   }

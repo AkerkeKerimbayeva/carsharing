@@ -435,7 +435,7 @@ export default {};
 .tariff {
   padding: 120px 0 50px 0;
   &-wrap {
-    background-color: #141414;
+    background-color: #373737;
   }
   &-cards {
     &__item {
@@ -464,7 +464,7 @@ export default {};
             transition: 0.4s;
           }
           p {
-            color: #141414;
+            color: #373737;
           }
           .title {
             padding: 25px 0 15px 0;
@@ -492,6 +492,18 @@ export default {};
             }
           }
         }
+      }
+    }
+  }
+}
+@media (max-width: 940px) {
+  .tariff {
+    padding: 40px 0;
+    .box {
+      width: 100%;
+      &-card {
+        width: 48%;
+        margin-bottom: 20px;
       }
     }
   }

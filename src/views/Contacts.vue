@@ -1,7 +1,7 @@
 <template>
   <div class="contact">
     <div class="container">
-      <div class="contact-title px32 fw500">Байланыстар</div>
+      <div class="contact-title px32 fw500">{{ $t("contacts") }}</div>
       <div class="contact-wrap">
         <div class="contact-left">
           <p>Телефон нөмірі: 8 777 777 77 77</p>
@@ -35,7 +35,7 @@ export default {};
 
 <style lang="scss" scoped>
 .contact {
-  background-color: #141414;
+  background-color: #373737;
   padding: 150px 0 100px 0;
   &-title {
     text-transform: uppercase;
@@ -54,6 +54,13 @@ export default {};
   margin-bottom: 50px;
   img {
     margin-right: 10px;
+  }
+}
+@media (max-width: 940px) {
+  .contact {
+    &-title {
+      margin-bottom: 20px;
+    }
   }
 }
 </style>

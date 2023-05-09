@@ -4,12 +4,11 @@
       <div class="main">
         <p class="main-title red px64 fw600">CARSHARING</p>
         <p class="main-desc white px32 fw400">
-          Каршеринг – сервис поминутной аренды автомобилей, где удобно и когда
-          угодно.
+          {{ $t("mainText") }}
         </p>
         <div class="main-btn">
           <button class="button" @click="isOpen = true">
-            Заказать обратный звонок
+            {{ $t("callBack") }}
           </button>
         </div>
       </div>
@@ -19,23 +18,21 @@
     <div class="container">
       <div class="main-cards">
         <div class="main-cards__item">
-          <p class="px18 fw400">С нами всегда выгодно</p>
+          <p class="px18 fw400">{{ $t("plusTitle1") }}</p>
           <p class="card red px24 fw500">
-            Начните пользоваться в Алматы сервисом поминутной аренды, и Вы
-            забудете о расходах на личный автомобиль.
+            {{ $t("plusDesc1") }}
           </p>
         </div>
         <div class="main-cards__item">
-          <p class="px18 fw400">Все включено</p>
+          <p class="px18 fw400">{{ $t("plusTitle2") }}</p>
           <p class="card red px24 fw500">
-            О расходах на бензин, парковку и мойку позаботимся мы.
+            {{ $t("plusDesc2") }}
           </p>
         </div>
         <div class="main-cards__item">
-          <p class="px18 fw400">Комфортнее такси и общественного транспорта</p>
+          <p class="px18 fw400">{{ $t("plusTitle3") }}</p>
           <p class="card red px24 fw500">
-            В нашем автомобиле удобством управляете Вы. Машины напрокат без
-            водителя и без залога.
+            {{ $t("plusDesc3") }}
           </p>
         </div>
       </div>
@@ -43,7 +40,7 @@
   </div>
   <div class="main-slider">
     <div class="container">
-      <p class="main-slider__title px32 fw500">Преимущества</p>
+      <p class="main-slider__title px32 fw500">{{ $t("plus") }}</p>
       <div class="main-slider__card">
         <swiper
           :slidesPerView="3"
@@ -98,14 +95,14 @@
   <Services />
   <Modal :open="isOpen" @close="isOpen = !isOpen">
     <div class="modal">
-      <p class="modal-title px24 fw500">Заказать обратный звонок</p>
+      <p class="modal-title px24 fw500">{{ $t("callBack") }}</p>
       <div class="modal-inputs">
         <input type="text" placeholder="Имя" class="input" />
         <input type="text" placeholder="Телефон" class="input" />
         <input type="text" placeholder="Email" class="input" />
       </div>
       <div class="modal-btn">
-        <button class="button">Отправить</button>
+        <button class="button">{{ $t("send") }}</button>
       </div>
     </div>
   </Modal>
@@ -194,10 +191,10 @@ export default {
     margin-top: 40px;
   }
   &-service {
-    background: #141414;
+    background: #373737;
   }
   &-slider {
-    background: #141414;
+    background: #373737;
     padding: 120px 0;
     &__title {
       text-align: center;
@@ -241,7 +238,7 @@ export default {
   width: 100%;
 }
 .modal {
-  background-color: #141414;
+  background-color: #373737;
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -256,6 +253,24 @@ export default {
     .input {
       width: 100%;
       margin-bottom: 15px;
+    }
+  }
+}
+@media (max-width: 940px) {
+  .main {
+    &-cards {
+      flex-direction: column;
+      align-items: center;
+      &__item {
+        width: 100%;
+        margin: 20px 0;
+        .card {
+          padding-top: 10px;
+        }
+      }
+    }
+    &-slider {
+      padding: 40px 0;
     }
   }
 }

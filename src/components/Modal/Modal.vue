@@ -102,7 +102,7 @@ export default {
     margin: 10px auto;
     filter: drop-shadow(0px 4px 30px rgba(0, 0, 0, 0.13));
     z-index: 10000000 !important;
-    top: 18%;
+    top: 12%;
     position: relative;
   }
   &-content {

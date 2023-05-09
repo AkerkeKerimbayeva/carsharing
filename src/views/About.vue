@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="container">
-      <div class="about-title px32 fw500">Біз туралы</div>
+      <div class="about-title px32 fw500">{{ $t("about") }}</div>
       <div class="about-wrap">
         <div class="about-left">
           <p class="title">Lorem ipsum</p>
@@ -54,7 +54,7 @@ export default {};
 
 <style lang="scss" scoped>
 .about {
-  background-color: #141414;
+  background-color: #373737;
   padding: 120px 0 100px 0;
   &-title {
     text-transform: uppercase;
@@ -80,6 +80,20 @@ export default {};
   }
   &-bottom {
     margin-top: 40px;
+  }
+}
+@media (max-width: 940px) {
+  .about {
+    &-wrap {
+      flex-direction: column;
+    }
+    &-left {
+      width: 100%;
+    }
+    &-right {
+      width: 100%;
+      margin-top: 20px;
+    }
   }
 }
 </style>

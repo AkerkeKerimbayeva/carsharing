@@ -1,7 +1,7 @@
 <template>
   <div class="service">
     <div class="container">
-      <p class="service-title px32 fw500">Наши услуги</p>
+      <p class="service-title px32 fw500">{{ $t("service") }}</p>
       <div class="service-cards">
         <div class="service-cards__item">
           <img src="@/assets/images/icon1.png" alt="" />
@@ -10,7 +10,9 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
             ultrices pellentesque vulputate sit. Ut feugiat.
           </p>
-          <button class="button">Подробнее</button>
+          <button class="button">
+            <router-link to="/tariffs">{{ $t("more") }}</router-link>
+          </button>
         </div>
         <div class="service-cards__item">
           <img src="@/assets/images/icon2.png" alt="" />
@@ -19,7 +21,9 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
             ultrices pellentesque vulputate sit. Ut feugiat.
           </p>
-          <button class="button">Подробнее</button>
+          <button class="button">
+            <router-link to="/tariffs">{{ $t("more") }}</router-link>
+          </button>
         </div>
         <div class="service-cards__item">
           <img src="@/assets/images/icon3.png" alt="" />
@@ -28,7 +32,9 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
             ultrices pellentesque vulputate sit. Ut feugiat.
           </p>
-          <button class="button">Подробнее</button>
+          <button class="button">
+            <router-link to="/tariffs">{{ $t("more") }}</router-link>
+          </button>
         </div>
         <div class="service-cards__item">
           <img src="@/assets/images/icon4.png" alt="" />
@@ -37,12 +43,14 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
             ultrices pellentesque vulputate sit. Ut feugiat.
           </p>
-          <button class="button">Подробнее</button>
+          <button class="button">
+            <router-link to="/tariffs">{{ $t("more") }}</router-link>
+          </button>
         </div>
       </div>
     </div>
     <div class="service-modal">
-      <p class="service-modal__title px32 fw500">ответим на любой вопрос</p>
+      <p class="service-modal__title px32 fw500">{{ $t("quest") }}</p>
       <div class="service-modal__inputs">
         <input type="text" placeholder="Имя" class="input" />
         <input type="text" placeholder="Телефон" class="input" />
@@ -56,7 +64,7 @@
         ></textarea>
       </div>
       <div class="service-modal__btn">
-        <button class="button">Отправить</button>
+        <button class="button">{{ $t("send") }}</button>
       </div>
     </div>
   </div>
@@ -68,7 +76,7 @@ export default {};
 
 <style lang="scss" scoped>
 .service {
-  background-color: #141414;
+  background-color: #373737;
   padding-bottom: 120px;
   &-title {
     margin-bottom: 25px;
@@ -127,6 +135,31 @@ export default {};
       display: flex;
       flex-direction: column;
       width: 26%;
+    }
+  }
+}
+@media (max-width: 940px) {
+  .service {
+    padding: 40px 0;
+    &-cards {
+      flex-direction: column;
+      align-items: center;
+      &__item {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 30px;
+        p {
+          text-align: center;
+        }
+      }
+    }
+    &-modal {
+      .input {
+        width: 90%;
+      }
+      &__inputs {
+        width: 90%;
+      }
     }
   }
 }

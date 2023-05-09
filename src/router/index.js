@@ -3,6 +3,8 @@ import MainPage from '@/views/MainPage.vue';
 import Contacts from '@/views/Contacts.vue';
 import About from "@/views/About.vue"
 import Tariffs from "@/views/Tariffs.vue"
+import Condition from "@/views/Condition.vue"
+import Account from "@/views/Account.vue"
 
 const routes = [
     {
@@ -24,6 +26,16 @@ const routes = [
         path: '/tariffs',
         name: 'tariffs',
         component: Tariffs
+    },
+    {
+        path: '/condition',
+        name: 'condition',
+        component: Condition
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: Account
     }
 ]
 
