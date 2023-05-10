@@ -78,24 +78,24 @@
         p {
           text-decoration-line: underline;
           text-transform: uppercase;
-          color: #1a0145;
+          color: #DB3138;
           cursor: pointer;
         }
       }
       .button {
         background: #ffffff;
-        border: 1px solid #1a0145;
+        border: 1px solid #DB3138;
         padding: 15px 0;
         font-weight: 600;
         font-size: 14px;
         line-height: 16px;
         text-align: center;
-        color: #1a0145;
+        color: #DB3138;
         transition: 0.4s;
         margin-right: 25px;
         &:hover {
-          background-color: #1a0145;
-          color: #ffffff;
+          background-color: #DB3138;
+          color: #ffffff !important;
           transition: 0.4s;
         }
       }

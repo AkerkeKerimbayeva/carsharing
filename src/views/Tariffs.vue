@@ -4,11 +4,11 @@
       <div class="tariff">
         <div class="tariff-cards">
           <div class="tariff-cards__item">
-            <p class="px24 fw500 black">Hourly tariffs – Toyota Yaris</p>
+            <p class="px24 fw500 black">Hourly tariffs – Volkswagen Polo</p>
             <p class="par">
               Prices valid for users with 20 % discount from TOP UP feature.
             </p>
-            <img class="car" src="@/assets/images/car1.png" alt="" />
+            <img class="car" src="@/assets/images/polo.jpg" alt="" />
             <div class="box">
               <div class="box-card">
                 <img class="hour" src="@/assets/images/hour1.svg" alt="" />
@@ -213,11 +213,11 @@
             </div>
           </div>
           <div class="tariff-cards__item">
-            <p class="px24 fw500 black">Hourly tariffs – Corolla Combi</p>
+            <p class="px24 fw500 black">Hourly tariffs – Vento</p>
             <p class="par">
               Prices valid for users with 20 % discount from TOP UP feature.
             </p>
-            <img class="car" src="@/assets/images/car2.png" alt="" />
+            <img class="car" src="@/assets/images/vento.jpg" alt="" />
             <div class="box">
               <div class="box-card">
                 <img class="hour" src="@/assets/images/hour1.svg" alt="" />

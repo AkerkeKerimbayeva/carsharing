@@ -26,7 +26,7 @@
           </p>
         </div>
         <div class="about-right">
-          <img src="@/assets/images/material1.png" alt="" />
+          <img src="@/assets/images/about-main.jpeg" alt="" />
         </div>
       </div>
       <div class="about-bottom">
