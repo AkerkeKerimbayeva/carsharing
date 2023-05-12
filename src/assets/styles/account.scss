@@ -1,6 +1,7 @@
 .acc {
     padding: 100px 0;
     background-color: #373737;
+    min-height: 95vh;
     &-wrap {
         display: flex;
         margin-top: 34px;
@@ -123,4 +124,35 @@
             margin-top: 35px;
         }
     }
+}
+@media (max-width: 940px) {
+  .cab {
+    padding: 40px 0 90px 0;
+    &-inputs {
+      &__btm {
+        flex-wrap: wrap;
+        .card {
+          margin-bottom: 25px;
+          width: 100%;
+          input {
+            width: 90% !important;
+          }
+        }
+      }
+    }
+  }
+  .order {
+    margin-top: 40px;
+  }
+}
+.order {
+  &-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &-data {
+    margin: 20px 20px 20px 0;
+    border: 1px solid #eeeeee;
+    padding: 5px;
+  }
 }

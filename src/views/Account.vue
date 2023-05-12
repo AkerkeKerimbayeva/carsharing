@@ -13,36 +13,29 @@
         </div>
         <div class="acc-right">
           <tab-block :isSelected="selectedNewsTab === 'Мои заказы'"
-            >фывфыв</tab-block
+            >
+            <div class="order">
+              <p class="order-title px24 fw500 red">
+                Мои заказы
+              </p>
+              <div class="order-wrap">
+                <div class="order-data" v-for="(item, index) in ord" :key="index">
+                  <p>Заказ №{{ item.id }}</p>
+                  <p>Статус заказа: <span class="fw700">{{ item.status }}</span></p>
+                  <p>Статус оплаты: <span class="fw700">{{ item.payment }}</span></p>
+                  <p>Тариф: <span class="fw700">{{ item.type_tariff }}</span></p>
+                  <p>Сумма: <span class="fw700">{{ item.total }}</span></p>
+                  <p>Создано: <span class="fw700">{{ format_date(item.createdAt) }}</span></p>
+                </div>
+              </div>
+            </div>
+            </tab-block
           >
           <tab-block :isSelected="selectedNewsTab === 'Мои данные'">
             <div class="cab">
               <div class="cab-title px16 fw500">Мои данные</div>
               <!-- {{ this.userData }} -->
               <div class="cab-inputs">
-                <div class="cab-inputs__top">
-                  <input
-                    :disabled="disabled"
-                    class="input"
-                    v-model="userData.name"
-                    placeholder="Имя"
-                    type="text"
-                  />
-                  <input
-                    :disabled="disabled"
-                    class="input"
-                    v-model="userData.sname"
-                    placeholder="Фамилия"
-                    type="text"
-                  />
-                  <input
-                    :disabled="disabled"
-                    class="input"
-                    v-model="userData.lname"
-                    placeholder="Отчество"
-                    type="text"
-                  />
-                </div>
                 <div class="cab-inputs__btm">
                   <div class="card">
                     <p>Ваш е-mail</p>
@@ -66,28 +59,28 @@
                     />
                   </div>
                   <div class="card">
-                    <p>Дата рождения</p>
+                    <p>Ваше имя</p>
                     <input
                       :disabled="disabled"
                       class="input"
-                      v-model="userData.bday"
-                      placeholder=""
-                      type="date"
+                      v-model="userData.name"
+                      placeholder="Имя"
+                      type="text"
                     />
                   </div>
                 </div>
               </div>
-              <div class="cab-btns">
+              <!-- <div class="cab-btns">
                 <div class="cab-btns__left">
-                  <button class="button" @click="updateUser">Сохранить</button>
-                  <button class="button" @click="disabled = false">
+                  <button class="button" v-if="!disabled" @click="updateUser">Сохранить</button>
+                  <button class="button" v-if="disabled = true" @click="disabled = true">
                     Изменить
                   </button>
                 </div>
-                <!-- <div class="cab-btns__right">
+                <div class="cab-btns__right">
                   <p @click="isOpen = true">Изменить пароль</p>
-                </div> -->
-              </div>
+                </div>
+              </div> -->
             </div>
           </tab-block>
           <!-- <tab-block :isSelected="selectedNewsTab === 'Корзина'"></tab-block> -->
@@ -117,11 +110,6 @@
             class="input"
           />
         </div>
-        <div class="modal-btn">
-          <button class="button-active" @click="changePassword">
-            Изменить пароль
-          </button>
-        </div>
       </div>
     </Modal>
   </div>
@@ -131,6 +119,7 @@
 import accTab from "@/components/tab/AccTab.vue";
 import TabBlock from "@/components/tab/tabBlock.vue";
 import { ref } from "vue";
+import moment from "moment";
 // import { mapGetters } from "vuex";
 import axios from "axios";
 import Modal from "@/components/Modal/Modal.vue";
@@ -149,7 +138,7 @@ export default {
       email: "",
       phone_number: null,
       phone: null,
-      bday: "",
+      ord: [],
       new_password: "",
       old_password: "",
       disabled: true,
@@ -166,74 +155,35 @@ export default {
   },
   created() {
     this.onSubmit();
+    this.getOrder()
   },
   methods: {
     selectNewsTab(tab) {
       this.selectedNewsTab = tab;
     },
+    format_date(value) {
+        moment.locale('ru');
+        return moment(String(value)).format('L');
+    },
     toBasket() {
       this.$router.push("/basket");
     },
-    updateUser() {
-      this.user = {
-        name: this.userData.name,
-        sname: this.userData.sname,
-        lname: this.userData.lname,
-        phone: this.userData.phone_number,
-        email: this.userData.email,
-        bday: this.userData.bday,
-      };
-      axios
-        .post("auth/user-update", this.user, {
-          headers: {
-            Authorization: localStorage.getItem("access_token")
-              ? `Bearer ${localStorage.getItem("access_token")}`
-              : null,
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            alert("Ваши данные удачно изменены!");
-            this.disabled = true;
-            this.SET_INFO(res.data);
-            this.userData = res.data;
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    changePassword() {
-      this.form = {
-        old_password: this.old_password,
-        new_password: this.new_password,
-      };
-      axios
-        .post("auth/password-update", this.form, {
-          headers: {
-            Authorization: localStorage.getItem("access_token")
-              ? `Bearer ${localStorage.getItem("access_token")}`
-              : null,
-          },
-        })
-        .then((res) => {
-          if (res.status === 202) {
-            alert("Пароль успешно обновлен!");
-            this.isOpen = false;
-            // setTimeout( () => this.disabledBtn = true, 5000),
-            this.new_password = "";
-            this.old_password = "";
-          }
-        })
-        .catch((err) => {
-          alert("Неправильно введённый текущий пароль!");
-          console.log(err);
-        });
+    getOrder() {
+      axios.get('client/orders', {
+        headers: {
+          Authorization: localStorage.getItem("access_token")
+            ? `Bearer ${localStorage.getItem("access_token")}`
+            : null,
+        },
+      })
+      .then(res => {
+        this.ord = res.data
+      })
     },
     onSubmit() {
       axios
-        .post(
-          "auth/me",
+        .get(
+          "client/auth/me",
           {},
           {
             headers: {

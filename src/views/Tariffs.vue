@@ -3,419 +3,18 @@
     <div class="container">
       <div class="tariff">
         <div class="tariff-cards">
-          <div class="tariff-cards__item">
-            <p class="px24 fw500 black">Hourly tariffs – Volkswagen Polo</p>
-            <p class="par">
-              Prices valid for users with 20 % discount from TOP UP feature.
-            </p>
-            <img class="car" src="@/assets/images/polo.jpg" alt="" />
+          <div class="tariff-cards__item" v-for="(item, index) in cars" :key="index">
+            <p class="px24 fw500 black" v-html="item.name"></p>
+            <p class="par" v-html="item.description"></p>
+            <img class="car" :src="'https://admin-carsharing.devup.kz' + item.image" alt="" />
             <div class="box">
-              <div class="box-card">
+              <div class="box-card" v-for="(cr, index) in item.carAs" :key="index">
                 <img class="hour" src="@/assets/images/hour1.svg" alt="" />
-                <p class="title px18 fw500">1 hour tariff</p>
+                <p class="title px18 fw500">{{ cr.type }}</p>
+                <p class="title px18 fw500 red">{{formatPrice( cr.price) }}</p>
                 <div class="box-card__items">
                   <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>1 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour2.svg" alt="" />
-                <p class="title px18 fw500">3 hour tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>3 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour3.svg" alt="" />
-                <p class="title px18 fw500">6 hour tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>6 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour4.svg" alt="" />
-                <p class="title px18 fw500">24 hour tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>24 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour1.svg" alt="" />
-                <p class="title px18 fw500">Weekend tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>1 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tariff-cards__item">
-            <p class="px24 fw500 black">Hourly tariffs – Vento</p>
-            <p class="par">
-              Prices valid for users with 20 % discount from TOP UP feature.
-            </p>
-            <img class="car" src="@/assets/images/vento.jpg" alt="" />
-            <div class="box">
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour1.svg" alt="" />
-                <p class="title px18 fw500">1 hour tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>1 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour2.svg" alt="" />
-                <p class="title px18 fw500">3 hour tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>3 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour3.svg" alt="" />
-                <p class="title px18 fw500">6 hour tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>6 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour4.svg" alt="" />
-                <p class="title px18 fw500">24 hour tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>24 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
-                  </div>
-                </div>
-              </div>
-              <div class="box-card">
-                <img class="hour" src="@/assets/images/hour1.svg" alt="" />
-                <p class="title px18 fw500">Weekend tariff</p>
-                <div class="box-card__items">
-                  <div class="box-card__item">
-                    <div class="wrap">
-                      <img src="@/assets/images/time_hourly.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>1 hour</p>
-                        <p class="red fw600">2000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_mileage.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>Price per kilometer</p>
-                        <p class="red fw600">4000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_accident.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>
-                          Liability in case of road <br />
-                          accidents
-                        </p>
-                        <p class="red fw600">6000</p>
-                      </div>
-                    </div>
-                    <div class="wrap">
-                      <img src="@/assets/images/time_over.png" alt="" />
-                      <div class="box-card__item-par">
-                        <p>onwards Minute tariff</p>
-                        <p class="red fw600">12000</p>
-                      </div>
-                    </div>
-                    <button class="button">Попробовать</button>
+                    <button @click="(isOpen = true),(selectedItem = cr)" class="button">Попробовать</button>
                   </div>
                 </div>
               </div>
@@ -424,14 +23,168 @@
         </div>
       </div>
     </div>
+    <Modal :open="isOpen" @close="isOpen = !isOpen">
+      <div class="modal" v-if="selectedItem">
+        <div class="modal-wrap">
+          <p class="modal-title">Аренда машины</p>
+          <!-- <input type="text" placeholder="Введите адрес" class="input"> -->
+          <label for="">Выберите вид оплаты</label>
+          <select v-model="payment" name="" class="input" id="">
+            <option value="Наличными">Наличными</option>
+            <option value="Банковской картой">С карточкой</option>
+            <option value="Каспи QR">Kaspi QR</option>
+          </select>
+          <div class="text">
+            <p>Тариф: {{ type_tariff = selectedItem.type }}</p>
+            <p>Итого: {{ formatPrice(total = selectedItem.price) }}</p>
+          </div>
+          <button @click="sendOrder" class="button">{{ $t("send") }}</button>
+        </div>
+      </div>
+    </Modal>
+    <Modal :open="isOpen" @close="isOpen = !isOpen">
+      <div class="modal" v-if="selectedItem">
+        <div class="modal-wrap">
+          <p class="modal-title">Аренда машины</p>
+          <!-- <input type="text" placeholder="Введите адрес" class="input"> -->
+          <label for="">Выберите вид оплаты</label>
+          <select v-model="payment" name="" class="input" id="">
+            <option value="Наличными">Наличными</option>
+            <option value="С карточкой">С карточкой</option>
+            <option value="Kaspi QR">Kaspi QR</option>
+          </select>
+          <div class="text">
+            <p>Тариф: {{ type_tariff = selectedItem.type }}</p>
+            <p>Итого: {{ formatPrice(total = selectedItem.price) }}</p>
+          </div>
+          <button @click="sendOrder" class="button">{{ $t("send") }}</button>
+        </div>
+      </div>
+    </Modal>
+    <Modal :open="isOpen1" @close="isOpen1 = !isOpen1">
+      <div class="modal">
+        <form class="modal-wrap" @submit.prevent="sendPay">
+          <p class="modal-title">Оплата заказа</p>
+          <!-- <input type="text" placeholder="Введите адрес" class="input"> -->
+          <label for="">Введите реквизиты:</label>
+          <input required placeholder="Введите номер карты" type="text" class="input">
+          <input required placeholder="Введите CVV" type="text" class="input">
+          <input required placeholder="Срок карты" type="text" class="input">
+          <input required placeholder="Имя владельца" type="text" class="input">
+          <button @submit.prevent="sendPay" class="button">{{ $t("send") }}</button>
+        </form>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from 'axios'
+import {ref} from "vue"
+import Modal from '@/components/Modal/Modal.vue';
+export default {
+  components: {Modal},
+  data() {
+    return {
+      cars: [],
+      type_tariff: [],
+      total: []
+    }
+  },
+  created() {
+    this.getTarif()
+  },
+  setup() {
+    const isOpen = ref(false);
+    const isOpen1 = ref(false);
+    return {
+      isOpen,
+      isOpen1
+    }
+  },
+  methods: {
+    sendOrder() {
+      // console.log(this.selectedItem.id);
+      this.form = {
+        type_tariff: this.selectedItem.id,
+        total: this.total,
+        payment: this.payment,
+      }
+      axios.post('client/orders', this.form, {
+        headers: {
+          Authorization: localStorage.getItem("access_token")
+            ? `Bearer ${localStorage.getItem("access_token")}`
+            : null,
+        },
+      })
+      .then( response => {
+        if( response.status === 200) {
+          alert("Успешно отправлен!")
+          this.isOpen = false;
+          console.log(this.payment);
+          if(this.payment == "С карточкой") {
+            this.isOpen1 = true;
+          }
+        }
+      })
+      
+    },
+    sendPay() {
+      alert("Ваш заказ оплачен!")
+      this.isOpen1 = false
+    },
+    getTarif() {
+      axios.get('cars')
+      .then(response => {
+        this.cars = response.data
+      })
+    },
+    formatPrice: price => `${(+price).toLocaleString()} ₸`,
+  }
+};
 </script>
 
 <style lang="scss" scoped>
+.modal {
+  background-color: #373737;
+  padding: 30px;
+  select {
+    width: 96%;
+    margin: 30px 0 10px 0;
+    option {
+      color: #373737;
+    }
+  }
+  &-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
+  &-title {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  button {
+    width: 200px;
+  }
+  input {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+  label {
+    margin-bottom: -20px;
+  }
+  .text {
+    width: 95%;
+    margin: 20px 0;
+    p {
+      padding-bottom: 5px;
+    }
+  }
+}
 .tariff {
   padding: 120px 0 50px 0;
   &-wrap {
@@ -448,17 +201,21 @@ export default {};
         margin-bottom: 30px;
       }
       .box {
-        width: 85%;
+        width: 100%;
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
         &-card {
           padding: 15px 10px;
           border: 1px solid red;
-          width: 22%;
+          width: 19%;
           margin-bottom: 30px;
           background-color: #fff;
           transition: 0.4s;
+          margin-right: 2%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           &:hover {
             transform: scale(1.1);
             transition: 0.4s;

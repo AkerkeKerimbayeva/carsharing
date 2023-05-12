@@ -52,10 +52,11 @@
     <div class="service-modal">
       <p class="service-modal__title px32 fw500">{{ $t("quest") }}</p>
       <div class="service-modal__inputs">
-        <input type="text" placeholder="Имя" class="input" />
-        <input type="text" placeholder="Телефон" class="input" />
+        <input v-model="name" type="text" placeholder="Имя" class="input" />
+        <input v-model="phone" type="text" placeholder="Телефон" class="input" />
         <textarea
           name=""
+          v-model="comment"
           placeholder="Комментарии (необязательно)"
           class="input"
           id=""
@@ -64,14 +65,44 @@
         ></textarea>
       </div>
       <div class="service-modal__btn">
-        <button class="button">{{ $t("send") }}</button>
+        <button @click="sendQuest" class="button">{{ $t("send") }}</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from 'axios'
+export default {
+  components: {},
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    sendQuest() {
+      this.form = {
+        name: this.name,
+        phone: this.phone,
+        comment: this.comment
+      }
+      axios.post('commentform', this.form, {
+        email: this.email
+      })
+      .then( res => {
+        if(res.status === 200) {
+          alert("Успешно отправлен!");
+          this.name = "",
+          this.phone = "",
+          this.comment = ""
+        } else {
+          console.log("err");
+        }
+      })
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -110,6 +141,9 @@ export default {};
       }
       button {
         margin: 20px 0;
+        &:hover {
+          color: #DB3138 !important;
+        }
       }
     }
   }

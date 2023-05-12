@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-items m-none">
+  <div class="tab-items">
     <ul class="tab-list">
       <li
         v-for="tab in tabItems"

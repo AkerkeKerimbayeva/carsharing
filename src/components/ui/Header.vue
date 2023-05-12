@@ -59,11 +59,26 @@
             /></router-link>
           </div>
           <img
+            v-if="!isAuth"
             @click="isOpen = true"
             class="head-login"
             src="@/assets/images/login.png"
             alt=""
           />
+          <img
+            v-if="isAuth"
+            @click="toAcc"
+            class="head-login"
+            src="@/assets/images/login.png"
+            alt=""
+          />
+          <img
+          v-if="isAuth"
+          @click="logOut"
+          style="width: 25px; margin-left: 10px;"
+          src="@/assets/images/logout.png"
+          alt=""
+        />
           <select
             class="px14"
             style="font-weight: 600; color: black; margin-left: 10px"
@@ -125,8 +140,8 @@
         <div class="modal-wrap">
           <p class="px24 fw500 modal-title">Авторизация</p>
           <div class="modal-inputs">
-            <input placeholder="Email" type="text" class="input" />
-            <input placeholder="Пароль" type="text" class="input" />
+            <input v-model="email" placeholder="Email" type="text" class="input" />
+            <input v-model="password" placeholder="Пароль" type="text" class="input" />
           </div>
           <div class="check">
             <input checked type="checkbox" name="" id="" />
@@ -136,7 +151,7 @@
             >
           </div>
           <div class="modal-btn">
-            <button @click="toAcc" class="button">Войти</button>
+            <button @click="onSubmit" class="button">Войти</button>
           </div>
           <p class="modal-text">
             Ещё нет аккаунта?
@@ -152,11 +167,11 @@
         <div class="modal-wrap">
           <p class="px24 fw500 modal-title">Регистрация</p>
           <div class="modal-inputs">
-            <input placeholder="Имя" type="text" class="input" />
-            <input placeholder="Email" type="text" class="input" />
-            <input placeholder="Номер телефона" type="text" class="input" />
-            <input placeholder="Пароль" type="text" class="input" />
-            <input placeholder="Повторить пароль" type="text" class="input" />
+            <input v-model="name" placeholder="Имя" type="text" class="input" />
+            <input v-model="email" placeholder="Email" type="text" class="input" />
+            <input v-model="phone" placeholder="Номер телефона" type="text" class="input" />
+            <input v-model="password" placeholder="Пароль" type="text" class="input" />
+            <input v-model="password" placeholder="Повторить пароль" type="text" class="input" />
           </div>
           <div class="check">
             <input checked type="checkbox" name="" id="" />
@@ -166,7 +181,7 @@
             >
           </div>
           <div class="modal-btn">
-            <button class="button">Зарегистрироваться</button>
+            <button @click="getRegister" class="button">Зарегистрироваться</button>
           </div>
           <p class="modal-text">
             Уже есть аккаунт?
@@ -181,6 +196,8 @@
 <script>
 import ModalVue from "@/components/Modal/Modal.vue";
 import { ref } from "vue";
+import axios from 'axios'
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: { ModalVue },
   data() {
@@ -199,7 +216,11 @@ export default {
       isOpen1,
     };
   },
+  created() {
+    this.checkAuth();
+  },
   methods: {
+    ...mapActions(["checkAuth", "logout"]),
     toAcc() {
       this.$router.push("/account");
       this.isOpen = false;
@@ -208,7 +229,77 @@ export default {
       localStorage.setItem("lang", event.target.value);
       window.location.reload();
     },
+    logOut() {
+      this.$store.dispatch("logout");
+      this.$store.dispatch("checkAuth");
+      this.$router.push("/");
+    },
+    onSubmit() {
+      axios
+        .post("client/auth/login", {
+          email: this.email,
+          password: this.password,
+          headers: {
+          Authorization: localStorage.getItem("access_token")
+              ? `Bearer ${localStorage.getItem("access_token")}`
+              : null,
+          },
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Вы удачно зашли в свой аккаунт!");
+            console.log(this.isAuth);
+            this.isOpen = false;
+            this.password = "";
+            this.email = "";
+            this.$router.push("/account");
+            localStorage.setItem("access_token", res.data.accessToken);
+            this.checkAuth();
+          }
+        })
+        .catch((error) => {
+          alert("Неправильный логин или пароль!")
+          console.error("There was an error!", error);
+        });
+    },
+    getRegister() {
+      axios
+        .post("client/auth/register", {
+          phone: this.phone,
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          headers: {
+            Authorization: localStorage.getItem("access_token")
+              ? `Bearer ${localStorage.getItem("access_token")}`
+              : null,
+          },
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Вы удачно зарегистрировались!");
+            // console.log(this.isAuth);
+            this.isOpen1 = false;
+            this.password = "";
+            this.phone = "";
+            this.$router.push("/account");
+            localStorage.setItem("access_token", res.data.accessToken);
+            this.checkAuth();
+          }
+        })
+        .catch((error) => {
+          alert("Пользователь уже зарегистрирован!");
+          console.error("There was an error!", error);
+        });
+    }
   },
+  computed: {
+    ...mapGetters({
+      isAuth: "getIsAuth",
+      isUnAuth: "getUnAuth",
+      getUser: "getUser",
+    })
+  }
 };
 </script>
 
