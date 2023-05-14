@@ -52,7 +52,10 @@
         >
           <swiper-slide v-for="(item, index) in car" :key="index">
             <div class="card">
-              <img :src="'https://admin-carsharing.devup.kz' + item.image" alt="" />
+              <img
+                :src="'https://admin-carsharing.devup.kz' + item.image"
+                alt=""
+              />
               <p class="px24 red fw600" v-html="item.name"></p>
               <p v-html="item.description"></p>
             </div>
@@ -74,8 +77,18 @@
     <div class="modal">
       <p class="modal-title px24 fw500">{{ $t("callBack") }}</p>
       <div class="modal-inputs">
-        <input v-model="name" type="text" placeholder="Имя" class="input" />
-        <input v-model="phone" type="text" placeholder="Телефон" class="input" />
+        <input
+          v-model="name"
+          type="text"
+          :placeholder="$t('namePl')"
+          class="input"
+        />
+        <input
+          v-model="phone"
+          type="text"
+          :placeholder="$t('phonePl')"
+          class="input"
+        />
         <input v-model="email" type="text" placeholder="Email" class="input" />
       </div>
       <div class="modal-btn">
@@ -93,7 +106,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import Modal from "@/components/Modal/Modal.vue";
 import { ref } from "vue";
-import axios from 'axios'
+import axios from "axios";
 export default {
   components: {
     Swiper,
@@ -135,30 +148,30 @@ export default {
   },
   methods: {
     getCars() {
-      axios.get('cars')
-      .then( response => {
-        this.car = response.data
-      })
+      axios.get("cars").then((response) => {
+        this.car = response.data;
+      });
     },
     sendCall() {
       this.form = {
         name: this.name,
         phone: this.phone,
-        email: this.email
-      }
-      axios.post('callform', this.form, {
-        email: this.email
-      })
-      .then( res => {
-        if(res.status === 200) {
-          alert("Успешно отправлен!");
-          this.isOpen = false
-        } else {
-          console.log("err");
-        }
-      })
-    }
-  }
+        email: this.email,
+      };
+      axios
+        .post("callform", this.form, {
+          email: this.email,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Успешно отправлен!");
+            this.isOpen = false;
+          } else {
+            console.log("err");
+          }
+        });
+    },
+  },
 };
 </script>
 
@@ -224,8 +237,8 @@ export default {
         img {
           width: 100%;
           max-width: 420px;
-          max-height: 500px;
-          object-fit: cover;
+          height: 260px;
+          object-fit: contain;
         }
       }
     }

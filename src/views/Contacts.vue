@@ -4,13 +4,18 @@
       <div class="contact-title px32 fw500">{{ $t("contacts") }}</div>
       <div class="contact-wrap">
         <div class="contact-left">
-          <p>Телефон нөмірі: 8 777 777 77 77</p>
+          <p>{{ $t("phone") }}: +7 778 125 2586</p>
           <p>Email: asd@asd.com</p>
-          <p>Мекен-жайы: Қабдолова көшесі, 117</p>
+          <p>{{ $t("address") }}: Қабдолова көшесі, 117</p>
           <div class="social">
-            <a href=""><img src="@/assets/images/tg.png" alt="" /></a>
-            <a href=""><img src="@/assets/images/yt.png" alt="" /></a>
-            <a href=""><img src="@/assets/images/vk.png" alt="" /></a>
+            <a
+              target="_blank"
+              href="https://instagram.com/dakeesi?igshid=NTc4MTIwNjQ2YQ=="
+              ><img src="@/assets/images/instagram.png" alt=""
+            /></a>
+            <a target="_blank" href="https://wa.me/+77781252586"
+              ><img src="@/assets/images/whatsapp.png" alt=""
+            /></a>
           </div>
         </div>
         <div class="contact-right">

@@ -5,10 +5,9 @@
       <div class="service-cards">
         <div class="service-cards__item">
           <img src="@/assets/images/icon1.png" alt="" />
-          <p>Оклейка салона</p>
+          <!-- <p>Оклейка салона</p> -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
-            ultrices pellentesque vulputate sit. Ut feugiat.
+            {{ $t("adv1") }}
           </p>
           <button class="button">
             <router-link to="/tariffs">{{ $t("more") }}</router-link>
@@ -16,10 +15,9 @@
         </div>
         <div class="service-cards__item">
           <img src="@/assets/images/icon2.png" alt="" />
-          <p>Оклейка салона</p>
+          <!-- <p>Оклейка салона</p> -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
-            ultrices pellentesque vulputate sit. Ut feugiat.
+            {{ $t("adv2") }}
           </p>
           <button class="button">
             <router-link to="/tariffs">{{ $t("more") }}</router-link>
@@ -27,10 +25,9 @@
         </div>
         <div class="service-cards__item">
           <img src="@/assets/images/icon3.png" alt="" />
-          <p>Оклейка салона</p>
+          <!-- <p>Оклейка салона</p> -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
-            ultrices pellentesque vulputate sit. Ut feugiat.
+            {{ $t("adv3") }}
           </p>
           <button class="button">
             <router-link to="/tariffs">{{ $t("more") }}</router-link>
@@ -38,10 +35,9 @@
         </div>
         <div class="service-cards__item">
           <img src="@/assets/images/icon4.png" alt="" />
-          <p>Оклейка салона</p>
+          <!-- <p>Оклейка салона</p> -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nascetur
-            ultrices pellentesque vulputate sit. Ut feugiat.
+            {{ $t("adv4") }}
           </p>
           <button class="button">
             <router-link to="/tariffs">{{ $t("more") }}</router-link>
@@ -52,12 +48,22 @@
     <div class="service-modal">
       <p class="service-modal__title px32 fw500">{{ $t("quest") }}</p>
       <div class="service-modal__inputs">
-        <input v-model="name" type="text" placeholder="Имя" class="input" />
-        <input v-model="phone" type="text" placeholder="Телефон" class="input" />
+        <input
+          v-model="name"
+          type="text"
+          :placeholder="$t('namePl')"
+          class="input"
+        />
+        <input
+          v-model="phone"
+          type="text"
+          :placeholder="$t('phonePl')"
+          class="input"
+        />
         <textarea
           name=""
           v-model="comment"
-          placeholder="Комментарии (необязательно)"
+          :placeholder="$t('comPl')"
           class="input"
           id=""
           cols="30"
@@ -72,36 +78,33 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   components: {},
   data() {
-    return {
-
-    }
+    return {};
   },
   methods: {
     sendQuest() {
       this.form = {
         name: this.name,
         phone: this.phone,
-        comment: this.comment
-      }
-      axios.post('commentform', this.form, {
-        email: this.email
-      })
-      .then( res => {
-        if(res.status === 200) {
-          alert("Успешно отправлен!");
-          this.name = "",
-          this.phone = "",
-          this.comment = ""
-        } else {
-          console.log("err");
-        }
-      })
-    }
-  }
+        comment: this.comment,
+      };
+      axios
+        .post("commentform", this.form, {
+          email: this.email,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Успешно отправлен!");
+            (this.name = ""), (this.phone = ""), (this.comment = "");
+          } else {
+            console.log("err");
+          }
+        });
+    },
+  },
 };
 </script>
 
@@ -126,6 +129,8 @@ export default {
       flex-direction: column;
       align-items: center;
       transition: 0.4s;
+      position: relative;
+      height: 325px;
       &:hover {
         transition: 0.4s;
         transform: scale(1.1);
@@ -141,8 +146,11 @@ export default {
       }
       button {
         margin: 20px 0;
+        position: absolute;
+        bottom: 0;
         &:hover {
-          color: #DB3138 !important;
+          color: #db3138 !important;
+          background-color: #f39191;
         }
       }
     }

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="foot">
         <div class="foot-left">
-          <p class="px14">2023 Carsharing Все права защищены.</p>
+          <p class="px14">2023 Carsharing.</p>
         </div>
         <div class="foot-right">
           <ul>

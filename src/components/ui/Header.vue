@@ -73,14 +73,14 @@
             alt=""
           />
           <img
-          v-if="isAuth"
-          @click="logOut"
-          style="width: 25px; margin-left: 10px;"
-          src="@/assets/images/logout.png"
-          alt=""
-        />
+            v-if="isAuth"
+            @click="logOut"
+            style="width: 25px; margin-left: 10px"
+            src="@/assets/images/logout.png"
+            alt=""
+          />
           <select
-            class="px14"
+            class="px14 head-lang"
             style="font-weight: 600; color: black; margin-left: 10px"
             name=""
             id=""
@@ -121,7 +121,8 @@
             to="/about"
             class="fw500 px18 white"
             style="cursor: pointer"
-            > {{ $t("about") }}</router-link
+          >
+            {{ $t("about") }}</router-link
           >
         </li>
         <li>
@@ -138,26 +139,32 @@
     <ModalVue :open="isOpen" @close="isOpen = !isOpen">
       <div class="modal">
         <div class="modal-wrap">
-          <p class="px24 fw500 modal-title">Авторизация</p>
+          <p class="px24 fw500 modal-title">{{ $t("aut") }}</p>
           <div class="modal-inputs">
-            <input v-model="email" placeholder="Email" type="text" class="input" />
-            <input v-model="password" placeholder="Пароль" type="text" class="input" />
+            <input
+              v-model="email"
+              placeholder="Email"
+              type="text"
+              class="input"
+            />
+            <input
+              v-model="password"
+              :placeholder="$t('pass')"
+              type="text"
+              class="input"
+            />
           </div>
           <div class="check">
             <input checked type="checkbox" name="" id="" />
-            <label for=""
-              >Нажимая вы соглашаетесь с политикой конфиденциальности и
-              обработкой персональных данных</label
-            >
+            <label for="">{{ $t("check") }}</label>
           </div>
           <div class="modal-btn">
-            <button @click="onSubmit" class="button">Войти</button>
+            <button @click="onSubmit" class="button">{{ $t("aut") }}</button>
           </div>
           <p class="modal-text">
-            Ещё нет аккаунта?
-            <span @click="(isOpen1 = true), (isOpen = false)"
-              >Зарегистрироваться</span
-            >
+            <span @click="(isOpen1 = true), (isOpen = false)">{{
+              $t("noAcc")
+            }}</span>
           </p>
         </div>
       </div>
@@ -165,27 +172,52 @@
     <ModalVue :open="isOpen1" @close="isOpen1 = !isOpen1">
       <div class="modal">
         <div class="modal-wrap">
-          <p class="px24 fw500 modal-title">Регистрация</p>
+          <p class="px24 fw500 modal-title">{{ $t("reg") }}</p>
           <div class="modal-inputs">
-            <input v-model="name" placeholder="Имя" type="text" class="input" />
-            <input v-model="email" placeholder="Email" type="text" class="input" />
-            <input v-model="phone" placeholder="Номер телефона" type="text" class="input" />
-            <input v-model="password" placeholder="Пароль" type="text" class="input" />
-            <input v-model="password" placeholder="Повторить пароль" type="text" class="input" />
+            <input
+              v-model="name"
+              :placeholder="$t('namePl')"
+              type="text"
+              class="input"
+            />
+            <input
+              v-model="email"
+              placeholder="Email"
+              type="text"
+              class="input"
+            />
+            <input
+              v-model="phone"
+              :placeholder="$t('phonePl')"
+              type="text"
+              class="input"
+            />
+            <input
+              v-model="password"
+              :placeholder="$t('pass')"
+              type="text"
+              class="input"
+            />
+            <input
+              v-model="password"
+              :placeholder="$t('passConf')"
+              type="text"
+              class="input"
+            />
           </div>
           <div class="check">
             <input checked type="checkbox" name="" id="" />
-            <label for=""
-              >Нажимая вы соглашаетесь с политикой конфиденциальности и
-              обработкой персональных данных</label
-            >
+            <label for="">{{ $t("check") }}</label>
           </div>
           <div class="modal-btn">
-            <button @click="getRegister" class="button">Зарегистрироваться</button>
+            <button @click="getRegister" class="button">
+              {{ $t("reg") }}
+            </button>
           </div>
           <p class="modal-text">
-            Уже есть аккаунт?
-            <span @click="(isOpen = true), (isOpen1 = false)">Войти</span>
+            <span @click="(isOpen = true), (isOpen1 = false)">{{
+              $t("yetAcc")
+            }}</span>
           </p>
         </div>
       </div>
@@ -196,7 +228,7 @@
 <script>
 import ModalVue from "@/components/Modal/Modal.vue";
 import { ref } from "vue";
-import axios from 'axios'
+import axios from "axios";
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: { ModalVue },
@@ -240,7 +272,7 @@ export default {
           email: this.email,
           password: this.password,
           headers: {
-          Authorization: localStorage.getItem("access_token")
+            Authorization: localStorage.getItem("access_token")
               ? `Bearer ${localStorage.getItem("access_token")}`
               : null,
           },
@@ -258,7 +290,7 @@ export default {
           }
         })
         .catch((error) => {
-          alert("Неправильный логин или пароль!")
+          alert("Неправильный логин или пароль!");
           console.error("There was an error!", error);
         });
     },
@@ -291,15 +323,15 @@ export default {
           alert("Пользователь уже зарегистрирован!");
           console.error("There was an error!", error);
         });
-    }
+    },
   },
   computed: {
     ...mapGetters({
       isAuth: "getIsAuth",
       isUnAuth: "getUnAuth",
       getUser: "getUser",
-    })
-  }
+    }),
+  },
 };
 </script>
 
@@ -354,6 +386,11 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
+  &-lang {
+    option {
+      color: #373737;
+    }
+  }
   &-wrap {
     // position: fixed;
     margin-bottom: -85px;
