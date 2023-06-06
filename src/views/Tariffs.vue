@@ -14,7 +14,7 @@
                 <p class="title px18 fw500 red">{{formatPrice( cr.price) }}</p>
                 <div class="box-card__items">
                   <div class="box-card__item">
-                    <button @click="(isOpen = true),(selectedItem = cr)" class="button">Попробовать</button>
+                    <button @click="(isOpen = true),(selectedItem = cr)" class="button">{{ $t("try") }}</button>
                   </div>
                 </div>
               </div>
@@ -26,17 +26,17 @@
     <Modal :open="isOpen" @close="isOpen = !isOpen">
       <div class="modal" v-if="selectedItem">
         <div class="modal-wrap">
-          <p class="modal-title">Аренда машины</p>
+          <p class="modal-title">{{ $t("arenda") }}</p>
           <!-- <input type="text" placeholder="Введите адрес" class="input"> -->
-          <label for="">Выберите вид оплаты</label>
+          <label for="">{{ $t("type") }}</label>
           <select v-model="payment" name="" class="input" id="">
-            <option value="Наличными">Наличными</option>
-            <option value="Банковской картой">С карточкой</option>
-            <option value="Каспи QR">Kaspi QR</option>
+            <option value="Наличными">{{ $t("pay1") }}</option>
+            <option value="Банковской картой">{{ $t("pay2") }}</option>
+            <option value="Каспи QR">{{ $t("pay3") }}</option>
           </select>
           <div class="text">
             <p>Тариф: {{ type_tariff = selectedItem.type }}</p>
-            <p>Итого: {{ formatPrice(total = selectedItem.price) }}</p>
+            <p>{{ $t("total") }}: {{ formatPrice(total = selectedItem.price) }}</p>
           </div>
           <button @click="sendOrder" class="button">{{ $t("send") }}</button>
         </div>
@@ -45,17 +45,17 @@
     <Modal :open="isOpen" @close="isOpen = !isOpen">
       <div class="modal" v-if="selectedItem">
         <div class="modal-wrap">
-          <p class="modal-title">Аренда машины</p>
+          <p class="modal-title">{{ $t("arenda") }}</p>
           <!-- <input type="text" placeholder="Введите адрес" class="input"> -->
-          <label for="">Выберите вид оплаты</label>
+          <label for="">{{ $t("type") }}</label>
           <select v-model="payment" name="" class="input" id="">
-            <option value="Наличными">Наличными</option>
-            <option value="С карточкой">С карточкой</option>
-            <option value="Kaspi QR">Kaspi QR</option>
+            <option value="Наличными">{{ $t("pay1") }}</option>
+            <option value="С карточкой">{{ $t("pay2") }}</option>
+            <option value="Kaspi QR">{{ $t("pay3") }}</option>
           </select>
           <div class="text">
             <p>Тариф: {{ type_tariff = selectedItem.type }}</p>
-            <p>Итого: {{ formatPrice(total = selectedItem.price) }}</p>
+            <p>{{ $t("total") }}: {{ formatPrice(total = selectedItem.price) }}</p>
           </div>
           <button @click="sendOrder" class="button">{{ $t("send") }}</button>
         </div>
@@ -64,9 +64,9 @@
     <Modal :open="isOpen1" @close="isOpen1 = !isOpen1">
       <div class="modal">
         <form class="modal-wrap" @submit.prevent="sendPay">
-          <p class="modal-title">Оплата заказа</p>
+          <p class="modal-title">{{ $t("payOrder") }}</p>
           <!-- <input type="text" placeholder="Введите адрес" class="input"> -->
-          <label for="">Введите реквизиты:</label>
+          <label for="">{{ $t("req") }}:</label>
           <input required placeholder="Введите номер карты" type="text" class="input">
           <input required placeholder="Введите CVV" type="text" class="input">
           <input required placeholder="Срок карты" type="text" class="input">

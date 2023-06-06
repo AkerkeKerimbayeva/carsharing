@@ -65,5 +65,14 @@
     "yetAcc": "Already have an account? Log in",
     "reg": "Registration",
     "aut": "Authorization",
-    "cab": "Personal account"
+    "cab": "Personal account",
+    "arenda": "Car rental",
+    "try": "Try",
+    "type": "Choose the type of payment",
+    "total": "Total",
+    "pay1": "Bonus",
+    "pay 2": "Bank card",
+    "pay3": "Kaspi QR",
+    "payOrder": "Order payment",
+    "req": "Enter details"
 }
